@@ -1,4 +1,3 @@
-// route to get logged in user's info (needs the token)
 export const getMe = (token) => {
   return fetch('/api/users/me', {
     headers: {
@@ -30,7 +29,7 @@ export const loginUser = (userData) => {
 
 // save book data for a logged in user
 export const saveBook = (bookData, token) => {
-  return fetch('/api/users', {
+  return fetch('/api/users/books', { 
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
