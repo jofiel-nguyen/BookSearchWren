@@ -134,7 +134,7 @@ Contributions to the Book Search Engine project are welcome! If you find any iss
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contact
-If you have any questions or want to collaborate on this project, you can reach me at your-email@example.com.
+If you have any questions or want to collaborate on this project, you can reach me .
 ![Animation shows "star wars" typed into a search box and books about Star Wars appearing as results.](./02-Challenge/Assets/21-mern-homework-demo-01.gif)<br>
 ![Animation shows user clicking "Save This Book!" button to save books that appear in search results. The button label changes to "Book Already Saved" after it is clicked and the book is saved.](./02-Challenge/Assets/21-mern-homework-demo-02.gif)
 
