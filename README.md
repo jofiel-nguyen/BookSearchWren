@@ -18,13 +18,14 @@ Contact
 The Book Search Engine is a web application that allows users to search for new books to read using the Google Books API. It is built using the MERN (MongoDB, Express.js, React, Node.js) stack and utilizes GraphQL for querying and mutating data.
 
 ## The main features of the Book Search Engine include:
-
+```
 User authentication: Users can sign up and log in to the application using their email and password.
 Book Search: Users can search for books by entering keywords in the search bar.
 Search Results: When a user performs a search, the application presents search results with book information, including the title, author, description, image, and a link to the Google Books page for the book.
 Book Saving: Logged-in users can save books to their account by clicking the "Save This Book" button in the search results.
 Saved Books: Users can view all the books they have saved in their account on a separate page.
 Book Removal: Users can remove books from their saved list by clicking the "Remove" button on a saved book.
+```
 ## User Story
 md
 
