@@ -28,11 +28,12 @@ Book Removal: Users can remove books from their saved list by clicking the "Remo
 ```
 ## User Story
 md
-
+```
 AS AN avid reader
 I WANT to search for new books to read
 SO THAT I can keep a list of books to purchase
-Acceptance Criteria
+```
+## Acceptance Criteria
 The Book Search Engine should meet the following acceptance criteria:
 
 md
