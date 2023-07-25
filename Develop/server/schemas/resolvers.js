@@ -1,3 +1,4 @@
+const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');
 
@@ -8,18 +9,20 @@ const resolvers = {
         const user = await User.findOne({ _id: context.user._id });
         return user;
       }
-      throw new Error('No user found');
+      throw new AuthenticationError('No user found');
     },
   },
   Mutation: {
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
-        throw new Error('No user found');
+        throw new AuthenticationError("Can't find this user");
       }
-      const pw = user.isCorrectPassword(password);
-      if (!pw) {
-        throw new Error('Wrong password');
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Wrong password!');
       }
       const token = signToken(user);
       return { token, user };
@@ -31,27 +34,26 @@ const resolvers = {
     },
     saveBook: async (parent, { bookData }, context) => {
       if (context.user) {
-        const user = await User.findByIdAndUpdate(
+        const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $push: { savedBooks: bookData } },
-          { new: true }
+          { $addToSet: { savedBooks: bookData } },
+          { new: true, runValidators: true }
         );
-        return user;
+        return updatedUser;
       }
-      throw new Error('No User');
+      throw new AuthenticationError('No User');
     },
     removeBook: async (parent, { bookId }, context) => { 
       if (context.user) {
-        const user = await User.findByIdAndUpdate(
+        const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { savedBooks: { bookId: bookId } } },
           { new: true }
         );
-        return user;
+        return updatedUser;
       }
-      throw new Error('No User Found');
+      throw new AuthenticationError('No User Found');
     },
-    
   },
 };
 
