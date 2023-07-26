@@ -17,8 +17,7 @@ const SearchBooks = () => {
     return () => saveBookIds(savedBookIds);
   }, [savedBookIds]);
 
-  // Use the useMutation hook for SAVE_BOOK
-  const [saveBookMutation] = useMutation(SAVE_BOOK);
+  const [saveBook] = useMutation(SAVE_BOOK);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -62,18 +61,17 @@ const SearchBooks = () => {
     }
 
     try {
-      // Call the SAVE_BOOK mutation instead of saveBook function
-      const { data } = await saveBookMutation({
+      const { data } = await saveBook({
         variables: {
-          input: { ...bookToSave },
+          bookData: { ...bookToSave },
         },
       });
 
-      if (data.saveBook?.bookId) {
-        setSavedBookIds([...savedBookIds, data.saveBook.bookId]);
-      }
+      // Update the savedBookIds state only if the mutation is successful
+      setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
       setError('Failed to save the book. Please try again.');
+      // Handle the error, but do not update the savedBookIds state in case of an error.
     }
   };
 
@@ -115,7 +113,7 @@ const SearchBooks = () => {
         <Row>
           {searchedBooks.map((book) => {
             return (
-              <Col key={book.bookId} md="4" >
+              <Col key={book.bookId} md="4">
                 <Card key={book.bookId} border='dark'>
                   {book.image ? (
                     <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' />
@@ -128,7 +126,8 @@ const SearchBooks = () => {
                       <Button
                         disabled={savedBookIds?.some((savedBookId) => savedBookId === book.bookId)}
                         className='btn-block btn-info'
-                        onClick={() => handleSaveBook(book.bookId)}>
+                        onClick={() => handleSaveBook(book.bookId)}
+                      >
                         {savedBookIds?.some((savedBookId) => savedBookId === book.bookId)
                           ? 'This book has already been saved!'
                           : 'Save this Book!'}

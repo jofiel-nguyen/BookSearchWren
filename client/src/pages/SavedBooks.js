@@ -7,7 +7,7 @@ import { REMOVE_BOOK } from '../utils/mutations';
 
 const SavedBooks = () => {
   // Execute the me query to get the user data, including saved books
-  const { loading, error, data: userData } = useQuery(GET_ME); // Use userData instead of data
+  const { loading, error, data: userData } = useQuery(GET_ME); 
   const [deleteBook] = useMutation(REMOVE_BOOK);
 
   const handleDeleteBook = async (bookId) => {
