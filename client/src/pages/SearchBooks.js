@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Col, Form, Button, Card, Row } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
-import { SAVE_BOOK } from '../utils/mutations'; 
-
 import Auth from '../utils/auth';
 import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
+import { SAVE_BOOK } from '../utils/mutations';
 
 const SearchBooks = () => {
   const [searchedBooks, setSearchedBooks] = useState([]);
@@ -16,7 +15,7 @@ const SearchBooks = () => {
 
   useEffect(() => {
     return () => saveBookIds(savedBookIds);
-  });
+  }, [savedBookIds]);
 
   // Use the useMutation hook for SAVE_BOOK
   const [saveBookMutation] = useMutation(SAVE_BOOK);
