@@ -67,7 +67,7 @@ This project is licensed under the [MIT License](./LICENSE) - see the [LICENSE](
 
 
 ## Contact
-If you have any questions or want to collaborate on this project, you can reach me at [your-email@example.com](mailto:your-email@example.com).
+If you have any questions or want to collaborate on this project, you can reach me at [myemaill@example.com](mailto:thitunguyen@my.lonestar.edu).
 
 ## Deploy
 - **GitHub Repository:** [https://github.com/nhunguyen-debug/21-MERN-Project.git](https://github.com/nhunguyen-debug/21-MERN-Project.git)
